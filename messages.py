@@ -52,7 +52,7 @@ while True:
         for event in longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW:
                 if event.from_user:
-					db_logic.table(event.user_id) # Добавляем в базу пользователя.
+                    db_logic.table(event.user_id) # Добавляем в базу пользователя.
                     if event.text == '/pic': # Команда.
                         send_pic(event.user_id)
 					if '/ra' in re.findall('/ra', event.text) and event.user_id == <ID_администратора_группы>:
