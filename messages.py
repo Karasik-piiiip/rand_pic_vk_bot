@@ -48,7 +48,7 @@ def send_pic_chat(chat):
 
 while True:
     try:
-		logging.info('Программа запущена')
+        logging.info('Программа запущена')
         for event in longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW:
                 if event.from_user:
@@ -61,12 +61,12 @@ while True:
                         logging.info('Запрошена команда /ra пользователем %s' % str(event.user_id))
                         send_mailing(event.text[3:])
                 if event.from_chat:
-					db_logic.table(chat_id = event.chat_id) # Добавляем в базу беседу.
+                    db_logic.table(chat_id = event.chat_id) # Добавляем в базу беседу.
                     if event.text == '/pic': # Команда.
                         send_pic_chat(event.chat_id)
     except Exception as e:
         ### Подразумевается, что будет обработана ошибка 
         ### HTTPSConnectionPool, которая переодически вызывается 
         ### из-за отсуствия ответа при прослушивании серверов ВКонтакте.
-		logging.error('Произошла ошибка: %s' % str(e))
+        logging.error('Произошла ошибка: %s' % str(e))
     	continue
